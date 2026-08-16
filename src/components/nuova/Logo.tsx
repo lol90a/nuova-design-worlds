@@ -29,7 +29,7 @@ export function LogoMark({ className, animated = false }: Props) {
           <stop offset="100%" stopColor="#A97835" />
         </linearGradient>
       </defs>
-      <g stroke="url(#nuova-gold)" strokeWidth="2.2" strokeLinecap="square">
+      <g stroke="url(#nuova-gold)" strokeWidth="2.2" strokeLinecap="square" pathLength={1}>
         {verticals.map((x, i) => (
           <line
             key={`l${x}`}
