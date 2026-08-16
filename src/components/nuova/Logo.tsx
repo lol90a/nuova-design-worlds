@@ -71,7 +71,7 @@ export function LogoMark({ className, animated = false }: Props) {
 export function Logo({ className = "", withWordmark = true, animated }: Props) {
   return (
     <span className={`flex items-center gap-3 ${className}`}>
-      <LogoMark className="h-6 w-[30px]" animated={animated} />
+      <LogoMark className="h-6 w-[30px]" animated={animated ?? false} />
       {withWordmark ? (
         <span
           className="text-[0.95rem] font-medium uppercase"

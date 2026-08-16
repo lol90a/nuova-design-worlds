@@ -90,7 +90,7 @@ export function RevealImage({
         alt={alt}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
-        style={reduce || !parallax ? undefined : { y, scale: 1 + parallax / 40 }}
+        style={reduce || !parallax ? {} : { y, scale: 1 + parallax / 40 }}
         className={`h-full w-full object-cover ${imgClassName}`}
       />
     </motion.div>
@@ -116,7 +116,7 @@ export function Magnetic({
     <motion.span
       ref={ref}
       className={`inline-block ${className}`}
-      style={reduce ? undefined : { x, y }}
+      style={reduce ? {} : { x, y }}
       onPointerMove={(e) => {
         if (reduce || e.pointerType !== "mouse" || !ref.current) return;
         const r = ref.current.getBoundingClientRect();
