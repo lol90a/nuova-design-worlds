@@ -10,33 +10,68 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HomeFurnitureRouteImport } from './routes/home-furniture'
+import { Route as HotelFurnitureRouteImport } from './routes/hotel-furniture'
+import { Route as OfficeFurnitureRouteImport } from './routes/office-furniture'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeFurnitureRoute = HomeFurnitureRouteImport.update({
+  id: '/home-furniture',
+  path: '/home-furniture',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HotelFurnitureRoute = HotelFurnitureRouteImport.update({
+  id: '/hotel-furniture',
+  path: '/hotel-furniture',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OfficeFurnitureRoute = OfficeFurnitureRouteImport.update({
+  id: '/office-furniture',
+  path: '/office-furniture',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/home-furniture': typeof HomeFurnitureRoute
+  '/hotel-furniture': typeof HotelFurnitureRoute
+  '/office-furniture': typeof OfficeFurnitureRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/home-furniture': typeof HomeFurnitureRoute
+  '/hotel-furniture': typeof HotelFurnitureRoute
+  '/office-furniture': typeof OfficeFurnitureRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/home-furniture': typeof HomeFurnitureRoute
+  '/hotel-furniture': typeof HotelFurnitureRoute
+  '/office-furniture': typeof OfficeFurnitureRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/home-furniture' | '/hotel-furniture' | '/office-furniture'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/home-furniture' | '/hotel-furniture' | '/office-furniture'
+  id:
+    | '__root__'
+    | '/'
+    | '/home-furniture'
+    | '/hotel-furniture'
+    | '/office-furniture'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HomeFurnitureRoute: typeof HomeFurnitureRoute
+  HotelFurnitureRoute: typeof HotelFurnitureRoute
+  OfficeFurnitureRoute: typeof OfficeFurnitureRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +83,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/home-furniture': {
+      id: '/home-furniture'
+      path: '/home-furniture'
+      fullPath: '/home-furniture'
+      preLoaderRoute: typeof HomeFurnitureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hotel-furniture': {
+      id: '/hotel-furniture'
+      path: '/hotel-furniture'
+      fullPath: '/hotel-furniture'
+      preLoaderRoute: typeof HotelFurnitureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/office-furniture': {
+      id: '/office-furniture'
+      path: '/office-furniture'
+      fullPath: '/office-furniture'
+      preLoaderRoute: typeof OfficeFurnitureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HomeFurnitureRoute: HomeFurnitureRoute,
+  HotelFurnitureRoute: HotelFurnitureRoute,
+  OfficeFurnitureRoute: OfficeFurnitureRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
