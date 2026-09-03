@@ -11,6 +11,13 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { WorldProvider } from "@/components/nuova/world";
+import { Header } from "@/components/nuova/Header";
+import { Footer } from "@/components/nuova/Footer";
+import { Intro } from "@/components/nuova/Intro";
+import { Cursor } from "@/components/nuova/Cursor";
+import { PageTransition } from "@/components/nuova/PageTransition";
+import { useSmoothScroll } from "@/components/nuova/motion";
 
 function NotFoundComponent() {
   return (
