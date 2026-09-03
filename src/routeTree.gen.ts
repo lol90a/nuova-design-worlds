@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CorporateFurnitureRouteImport } from './routes/corporate-furniture'
 import { Route as HomeFurnitureRouteImport } from './routes/home-furniture'
 import { Route as HotelFurnitureRouteImport } from './routes/hotel-furniture'
 import { Route as OfficeFurnitureRouteImport } from './routes/office-furniture'
@@ -17,6 +18,11 @@ import { Route as OfficeFurnitureRouteImport } from './routes/office-furniture'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorporateFurnitureRoute = CorporateFurnitureRouteImport.update({
+  id: '/corporate-furniture',
+  path: '/corporate-furniture',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeFurnitureRoute = HomeFurnitureRouteImport.update({
@@ -37,12 +43,14 @@ const OfficeFurnitureRoute = OfficeFurnitureRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/corporate-furniture': typeof CorporateFurnitureRoute
   '/home-furniture': typeof HomeFurnitureRoute
   '/hotel-furniture': typeof HotelFurnitureRoute
   '/office-furniture': typeof OfficeFurnitureRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/corporate-furniture': typeof CorporateFurnitureRoute
   '/home-furniture': typeof HomeFurnitureRoute
   '/hotel-furniture': typeof HotelFurnitureRoute
   '/office-furniture': typeof OfficeFurnitureRoute
@@ -50,18 +58,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/corporate-furniture': typeof CorporateFurnitureRoute
   '/home-furniture': typeof HomeFurnitureRoute
   '/hotel-furniture': typeof HotelFurnitureRoute
   '/office-furniture': typeof OfficeFurnitureRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/home-furniture' | '/hotel-furniture' | '/office-furniture'
+  fullPaths:
+    | '/'
+    | '/corporate-furniture'
+    | '/home-furniture'
+    | '/hotel-furniture'
+    | '/office-furniture'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home-furniture' | '/hotel-furniture' | '/office-furniture'
+  to:
+    | '/'
+    | '/corporate-furniture'
+    | '/home-furniture'
+    | '/hotel-furniture'
+    | '/office-furniture'
   id:
     | '__root__'
     | '/'
+    | '/corporate-furniture'
     | '/home-furniture'
     | '/hotel-furniture'
     | '/office-furniture'
@@ -69,6 +89,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CorporateFurnitureRoute: typeof CorporateFurnitureRoute
   HomeFurnitureRoute: typeof HomeFurnitureRoute
   HotelFurnitureRoute: typeof HotelFurnitureRoute
   OfficeFurnitureRoute: typeof OfficeFurnitureRoute
@@ -81,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corporate-furniture': {
+      id: '/corporate-furniture'
+      path: '/corporate-furniture'
+      fullPath: '/corporate-furniture'
+      preLoaderRoute: typeof CorporateFurnitureRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home-furniture': {
@@ -109,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CorporateFurnitureRoute: CorporateFurnitureRoute,
   HomeFurnitureRoute: HomeFurnitureRoute,
   HotelFurnitureRoute: HotelFurnitureRoute,
   OfficeFurnitureRoute: OfficeFurnitureRoute,
